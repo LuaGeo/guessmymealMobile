@@ -68,14 +68,27 @@ export default function HomeScreen() {
   }, []);
 
   const takePhoto = useCallback(async () => {
-    const hasPermission = await requestPermissions();
-    if (!hasPermission) return;
-
     try {
+      // Demander les permissions caméra spécifiquement
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
+
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission caméra requise",
+          "Allez dans Réglages > Expo Go > Appareil photo et activez l'accès.",
+          [
+            { text: "Annuler" },
+            { text: "Ouvrir Réglages", onPress: () => Linking.openSettings() },
+          ]
+        );
+        return;
+      }
+
       const result = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
         aspect: [4, 3],
         quality: 0.8,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
       });
 
       if (!result.canceled && result.assets[0]) {
@@ -85,8 +98,11 @@ export default function HomeScreen() {
         setError(null);
       }
     } catch (error) {
-      console.error("Error taking photo:", error);
-      Alert.alert("Erreur", "Impossible de prendre la photo");
+      console.error("Erreur caméra:", error);
+      Alert.alert(
+        "Erreur",
+        `Impossible d'accéder à la caméra: ${error.message}`
+      );
     }
   }, []);
 
