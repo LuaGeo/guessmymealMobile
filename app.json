@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "guessmymealMobile",
+    "name": "GuessMyMeal",
     "slug": "guessmymealMobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,13 +9,22 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Cette application a besoin d'accéder à votre appareil photo pour analyser vos repas.",
+        "NSPhotoLibraryUsageDescription": "Cette application a besoin d'accéder à vos photos pour analyser vos repas."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
       "edgeToEdgeEnabled": true
     },
     "web": {
@@ -32,6 +41,19 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "L'application accède à vos photos pour analyser vos repas.",
+          "cameraPermission": "L'application accède à votre appareil photo pour prendre des photos de vos repas."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "L'application accède à votre appareil photo pour prendre des photos de vos repas."
         }
       ]
     ],
