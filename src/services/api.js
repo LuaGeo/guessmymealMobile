@@ -1,6 +1,6 @@
 // Configuration de l'API
 // IMPORTANT: Remplacez par l'IP de votre serveur (pas localhost si vous testez sur un appareil)
-const API_BASE_URL = "http://192.168.1.105:8000"; // Exemple - remplacez par votre IP
+const API_BASE_URL = "http://localhost:8000"; // Exemple - remplacez par votre IP
 
 /**
  * Analyse une image de nourriture via l'API FastAPI

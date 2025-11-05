@@ -16,7 +16,7 @@ import {
 } from "react-native";
 
 import FoodItemCard from "../../src/components/FooditemCard";
-import NutritionCard from "../../src/components/NutritionCard";
+import NutritionCardFusion from "../../src/components/NutritionCardFusion";
 import { analyzeFood } from "../../src/services/api";
 
 const screenWidth = Dimensions.get("window").width;
@@ -261,7 +261,10 @@ export default function HomeScreen() {
               )}
 
               {nutritionTotal && (
-                <NutritionCard nutritionTotal={nutritionTotal} />
+                <NutritionCardFusion
+                  nutritionTotal={nutritionTotal}
+                  items={detectionResults}
+                />
               )}
 
               {detectionResults.length > 0 && (
